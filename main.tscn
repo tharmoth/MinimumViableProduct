@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://du3mj5ge04uh7"]
+[gd_scene load_steps=7 format=3 uid="uid://bcjn50piqi8vt"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
-[ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="2_mawca"]
+[ext_resource type="Script" path="res://GUI.gd" id="2_60o0s"]
+[ext_resource type="Texture2D" uid="uid://bjh3yfsxgaxoy" path="res://assets/entities/enemy.jpg" id="2_mawca"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 
@@ -34,3 +35,61 @@ scale = Vector2(0.24125, 0.245)
 texture = ExtResource("2_mawca")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Map/Enemy"]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_60o0s")
+
+[node name="Buttons" type="Control" parent="GUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Buttons"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="Button" parent="GUI/Buttons/HBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Stop" type="Button" parent="GUI/Buttons/HBoxContainer"]
+layout_mode = 2
+text = "Stop"
+
+[node name="InfoPanel" type="Control" parent="GUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_right = 40.0
+offset_bottom = -58.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="GUI/InfoPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.439216, 0.439216, 0.439216, 0.439216)
+
+[node name="Label" type="Label" parent="GUI/InfoPanel/ColorRect"]
+layout_mode = 0
+offset_right = 41.0
+offset_bottom = 26.0
+text = "#info
+"
+
+[connection signal="gui_input" from="GUI" to="GUI" method="_on_gui_input"]
+[connection signal="pressed" from="GUI/Buttons/HBoxContainer/Start" to="GUI" method="_on_start_pressed"]
+[connection signal="pressed" from="GUI/Buttons/HBoxContainer/Stop" to="GUI" method="_on_stop_pressed"]
