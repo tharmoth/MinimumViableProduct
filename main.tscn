@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbau7op813630"]
+[gd_scene load_steps=12 format=3 uid="uid://cbau7op813630"]
 
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/tilesets/Tileset.png" id="1_dl7k0"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="2_xwkwv"]
 [ext_resource type="Script" path="res://Turret.gd" id="3_xcqk0"]
 [ext_resource type="Script" path="res://TurretSlot.gd" id="4_f7xh8"]
 [ext_resource type="Texture2D" uid="uid://ccywbpqemfqww" path="res://assets/entities/TurretSlot.png" id="5_fhxdh"]
+[ext_resource type="PackedScene" path="res://GUI.tscn" id="6_em4da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -150,5 +151,8 @@ region_filter_clip_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TurretSlot"]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_okuh8")
+
+[node name="GUI" parent="." instance=ExtResource("6_em4da")]
+layout_mode = 1
 
 [connection signal="input_event" from="Map/TurretSlot" to="Map/TurretSlot" method="_on_input_event"]
