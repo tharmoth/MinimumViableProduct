@@ -29,6 +29,8 @@ script = ExtResource("1_fpdfu")
 shape = SubResource("CircleShape2D_gwx7g")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/Enemy"]
+position = Vector2(49.75, 51)
+scale = Vector2(0.24125, 0.245)
 texture = ExtResource("2_mawca")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Map/Enemy"]
