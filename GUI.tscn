@@ -9,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_ihyej")
 
 [node name="Buttons" type="Control" parent="."]
@@ -19,6 +20,7 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
 layout_mode = 0
@@ -27,10 +29,12 @@ offset_bottom = 40.0
 
 [node name="Start" type="Button" parent="Buttons/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Start"
 
 [node name="Stop" type="Button" parent="Buttons/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Stop"
 
 [node name="InfoPanel" type="Control" parent="."]
@@ -42,17 +46,20 @@ offset_top = -98.0
 offset_right = 40.0
 offset_bottom = -58.0
 grow_vertical = 0
+mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="InfoPanel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 color = Color(0.439216, 0.439216, 0.439216, 0.439216)
 
 [node name="Label" type="Label" parent="InfoPanel/ColorRect"]
 layout_mode = 0
 offset_right = 41.0
 offset_bottom = 26.0
+mouse_filter = 1
 text = "#info
 "
 
