@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://cbau7op813630"]
 
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/tilesets/Tileset.png" id="1_dl7k0"]
-[ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="2_xwkwv"]
-[ext_resource type="Script" path="res://Turret.gd" id="3_xcqk0"]
-[ext_resource type="Script" path="res://TurretSlot.gd" id="4_f7xh8"]
+[ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
+[ext_resource type="Script" path="res://Scenes/Turret/Turret.gd" id="3_xcqk0"]
+[ext_resource type="Script" path="res://Scenes/TurretSlot/TurretSlot.gd" id="4_wcwik"]
 [ext_resource type="Texture2D" uid="uid://ccywbpqemfqww" path="res://assets/entities/TurretSlot.png" id="5_fhxdh"]
-[ext_resource type="PackedScene" path="res://GUI.tscn" id="6_em4da"]
+[ext_resource type="PackedScene" uid="uid://6cu2lxfbeq5f" path="res://Scenes/GUI/GUI.tscn" id="6_em4da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -105,6 +105,7 @@ anchor_bottom = 1.0
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Map" type="TileMap" parent="."]
@@ -122,7 +123,7 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="Enemy" type="CharacterBody2D" parent="Map"]
-script = ExtResource("2_xwkwv")
+script = ExtResource("1_fpdfu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Enemy"]
 shape = SubResource("CircleShape2D_gwx7g")
@@ -142,7 +143,7 @@ shape = SubResource("CircleShape2D_qk77w")
 
 [node name="TurretSlot" type="Area2D" parent="Map"]
 position = Vector2(50, 50)
-script = ExtResource("4_f7xh8")
+script = ExtResource("4_wcwik")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/TurretSlot"]
 texture = ExtResource("5_fhxdh")
@@ -156,3 +157,5 @@ shape = SubResource("RectangleShape2D_okuh8")
 layout_mode = 1
 
 [connection signal="input_event" from="Map/TurretSlot" to="Map/TurretSlot" method="_on_input_event"]
+[connection signal="mouse_entered" from="Map/TurretSlot" to="Map/TurretSlot" method="_on_mouse_entered"]
+[connection signal="gui_input" from="GUI" to="Map/TurretSlot" method="_on_gui_gui_input"]
