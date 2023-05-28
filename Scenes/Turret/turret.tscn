@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv8hl5ac3j8ha"]
+
+[ext_resource type="Script" path="res://Scenes/Turret/Turret.gd" id="1_gie1q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qk77w"]
+
+[node name="Turret" type="Area2D"]
+script = ExtResource("1_gie1q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_qk77w")
