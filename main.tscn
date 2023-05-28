@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbau7op813630"]
+[gd_scene load_steps=6 format=3 uid="uid://du3mj5ge04uh7"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
+[ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="2_mawca"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 
@@ -28,5 +29,6 @@ script = ExtResource("1_fpdfu")
 shape = SubResource("CircleShape2D_gwx7g")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/Enemy"]
+texture = ExtResource("2_mawca")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Map/Enemy"]
