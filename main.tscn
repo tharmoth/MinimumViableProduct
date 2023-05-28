@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbau7op813630"]
+[gd_scene load_steps=5 format=3 uid="uid://cbau7op813630"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
+
+[sub_resource type="TileSet" id="TileSet_y64e8"]
+sources/0 = SubResource("TileSetAtlasSource_1o4n5")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwx7g"]
 
@@ -13,6 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Map" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_y64e8")
 format = 2
 
 [node name="Enemy" type="CharacterBody2D" parent="Map"]
