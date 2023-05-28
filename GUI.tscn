@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://bejqbr0eemy2"]
+
+[ext_resource type="Script" path="res://GUI.gd" id="1_ihyej"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ihyej")
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Stop" type="Button" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+text = "Stop"
+
+[node name="InfoPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_right = 40.0
+offset_bottom = -58.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="InfoPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.439216, 0.439216, 0.439216, 0.439216)
+
+[node name="Label" type="Label" parent="InfoPanel/ColorRect"]
+layout_mode = 0
+offset_right = 41.0
+offset_bottom = 26.0
+text = "#info
+"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="Buttons/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Buttons/HBoxContainer/Stop" to="." method="_on_stop_pressed"]
