@@ -12,9 +12,6 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		print("Mouse Motion at: ", event.position)
 
-	# Print the size of the viewport.
-	print("Viewport Resolution is: ", get_viewport_rect().size)
-
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
