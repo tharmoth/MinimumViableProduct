@@ -6,7 +6,6 @@ var can_shoot := true
 @export var fire_rate: float = 0.5
 @export var rot_speed: float = 8.0
 @export var gun_texture: CompressedTexture2D
-@export var projectile_type: PackedScene
 @export var projectile_spread: float = 0.2
 @export var projectile_speed: int = 1000
 @export var projectile_damage: int = 10

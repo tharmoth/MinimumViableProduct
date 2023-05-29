@@ -24,11 +24,13 @@ func start(_position: Vector2, _rotation: float, _speed: int, _damage: int, _tar
 	velocity = Vector2.RIGHT.rotated(_rotation) * speed
 
 func _on_body_entered(body):
-	# TODO body takes damage
+	if body.has_method("subtract_health"):
+		body.subtract_health(damage)
 	_explode()
 	
 func _on_area_entered(area):
-	# TODO area takes damage?
+	if area.has_method("subtract_health"):
+		area.subtract_health(damage)
 	_explode()
 
 func _explode() -> void:
