@@ -52,7 +52,7 @@ func _physics_process(delta):
 		# If there aren't any more invisible nodes to detect, the enemy has reached the
 		# end of the path and therefore the player loses
 		grandmaReachedEnd.emit()
-		grandma.hide()
+		queue_free()
 		return -1
 	
 	# This logic is built to determine if the next invisible sprite has been reached

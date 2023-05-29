@@ -13,6 +13,7 @@ var can_shoot := true
 @onready var firerate_timer := $FireRateTimer as Timer
 @onready var muzzle := $TurretSprite2D/Muzzle as Marker2D
 @onready var gun := $TurretSprite2D as Sprite2D
+@onready var lookahead := $TurretSprite2D/LookAhead as RayCast2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,7 +41,7 @@ func _process(delta):
 		var target_rot: float = fmod(global_position.direction_to(target_pos).angle(), 2*PI)
 		gun.rotation = fmod(lerp_angle(gun.rotation, target_rot, rot_speed * delta), 2*PI)
 		# will only fire if aiming near the target
-		if can_shoot and abs(fmod(gun.rotation - target_rot, 2*PI)) < 0.3:
+		if can_shoot and lookahead.is_colliding():
 			shoot()
 
 func _on_body_entered(body):
