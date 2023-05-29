@@ -26,7 +26,7 @@ var waveIndex = 0 :
 		enemysToSpawn += waveIndex
 		$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
 
-var cookies = 20 :
+@export var cookies = 5 :
 	get:
 		return cookies
 	set(value):
@@ -92,6 +92,7 @@ func _is_valid_build_loc(position):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selectedObject = null
+	cookies = cookies
 	pass # Replace with function body.
 
 
