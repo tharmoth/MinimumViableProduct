@@ -140,8 +140,7 @@ text = "Cookies"
 
 [node name="CookiesCount" type="Label" parent="Lives/VBoxContainer"]
 layout_mode = 2
-text = "5
-"
+text = "20"
 horizontal_alignment = 1
 
 [node name="TopInfo" type="Control" parent="."]
