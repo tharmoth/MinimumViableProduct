@@ -1,6 +1,8 @@
 # Written by Lizzy Jamie in collaboration with Scott and Will Kersh
 extends CharacterBody2D
-
+# grandma: This variable gets the sprite for the enemy so the path name will not need
+# to be called at every use
+@onready var grandma := $Sprite2D as Sprite2D
 # percentToTarget: This float variable is the calculating factor for the percentage 
 # that should be multiplied by the delta for the grandma sprite to move from point a
 # to point b
@@ -50,6 +52,7 @@ func _physics_process(delta):
 		# If there aren't any more invisible nodes to detect, the enemy has reached the
 		# end of the path and therefore the player loses
 		grandmaReachedEnd.emit()
+		queue_free()
 		return -1
 	
 	# This logic is built to determine if the next invisible sprite has been reached
@@ -60,6 +63,12 @@ func _physics_process(delta):
 		pxlsAlreadyTraveled += delta * speed
 		percentToTarget = pxlsAlreadyTraveled/distance
 		position = currentPoint.position.lerp(targetPoint.position, percentToTarget) * 2
+		# This logic controls when the enemy should flip based on the targetPoint
+		# multiplied by 2 being greater than the current position of the enemy or not
+		if targetPoint.position.x * 2 > position.x:
+			grandma.set_flip_h(false)
+		else:
+			grandma.set_flip_h(true)
 	else:
 		# If it has not, update the currentPointIdx by 1, reset the pxlsAlreadyTraveled
 		# and the percentToTarget
@@ -73,4 +82,6 @@ func subtract_health(value: int) -> void:
 	# This logic is built to signal if the enemy has died
 	if grandmaHealth == 0:
 		grandmaIsDead.emit()
+		grandma.hide()
 		queue_free()
+		
