@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://of8yiaq12u1b"]
 
-[ext_resource type="Texture2D" uid="uid://of1kou4anid3" path="res://assets/entities/invis2.png" id="2_2mdnc"]
+[ext_resource type="Texture2D" uid="uid://d366jooasd3jm" path="res://assets/entities/invis2.png" id="2_2mdnc"]
 
 [node name="NavigationPoints" type="Node2D"]
 
