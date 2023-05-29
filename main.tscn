@@ -1,10 +1,20 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=9 format=3 uid="uid://cbau7op813630"]
+=======
+[gd_scene load_steps=8 format=3 uid="uid://du3mj5ge04uh7"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="1_dl7k0"]
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="3_2x4pb"]
 [ext_resource type="PackedScene" uid="uid://of8yiaq12u1b" path="res://Scenes/NavigationPoints.tscn" id="4_ujhvc"]
 [ext_resource type="PackedScene" uid="uid://18et2tcbrm1o" path="res://Scenes/GUI/GUI.tscn" id="6_em4da"]
+=======
+[ext_resource type="Script" path="res://GUI.gd" id="2_60o0s"]
+[ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="2_mawca"]
+[ext_resource type="Texture2D" uid="uid://dpmdlmvsypy7t" path="res://assets/entities/invis2.png" id="4_pyscp"]
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -124,6 +134,7 @@ script = ExtResource("1_fpdfu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Enemy"]
 shape = SubResource("CircleShape2D_gwx7g")
 
+<<<<<<< Updated upstream
 [node name="Sprite2D" type="Sprite2D" parent="Map/Enemy"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_2x4pb")
@@ -131,10 +142,69 @@ texture = ExtResource("3_2x4pb")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Map/Enemy"]
 
 [node name="Turrets" type="Node" parent="Map"]
+=======
+[node name="EnemySprite" type="Sprite2D" parent="Map/Enemy"]
+z_index = 1
+position = Vector2(58, 55)
+scale = Vector2(0.24125, 0.245)
+texture = ExtResource("2_mawca")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Map/Enemy"]
+
+[node name="GUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_60o0s")
+>>>>>>> Stashed changes
 
 [node name="GUI" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_em4da")]
 layout_mode = 1
 tilemap = NodePath("../Map")
 
+<<<<<<< Updated upstream
 [node name="NavigationPoints" parent="." instance=ExtResource("4_ujhvc")]
 scale = Vector2(0.5, 0.5)
+=======
+[node name="NavigationPoints" type="Node2D" parent="."]
+
+[node name="NavPoint1" type="Sprite2D" parent="NavigationPoints"]
+position = Vector2(64, 62)
+scale = Vector2(0.512222, 0.51)
+texture = ExtResource("4_pyscp")
+
+[node name="NavPoint2" type="Sprite2D" parent="NavigationPoints"]
+position = Vector2(1079, 113)
+scale = Vector2(0.512222, 0.51)
+texture = ExtResource("4_pyscp")
+
+[node name="NavPoint3" type="Sprite2D" parent="NavigationPoints"]
+position = Vector2(1079, 310)
+scale = Vector2(0.512222, 0.51)
+texture = ExtResource("4_pyscp")
+
+[node name="NavPoint4" type="Sprite2D" parent="NavigationPoints"]
+position = Vector2(62, 328)
+scale = Vector2(0.512222, 0.51)
+texture = ExtResource("4_pyscp")
+
+[node name="NavPoint5" type="Sprite2D" parent="NavigationPoints"]
+position = Vector2(65, 582)
+scale = Vector2(0.512222, 0.51)
+texture = ExtResource("4_pyscp")
+
+[node name="NavPoint6" type="Sprite2D" parent="NavigationPoints"]
+position = Vector2(1082, 567)
+scale = Vector2(0.512222, 0.51)
+texture = ExtResource("4_pyscp")
+
+[connection signal="gui_input" from="GUI" to="GUI" method="_on_gui_input"]
+[connection signal="pressed" from="GUI/Buttons/HBoxContainer/Start" to="GUI" method="_on_start_pressed"]
+[connection signal="pressed" from="GUI/Buttons/HBoxContainer/Stop" to="GUI" method="_on_stop_pressed"]
+>>>>>>> Stashed changes

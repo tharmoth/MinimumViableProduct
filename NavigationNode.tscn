@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxvowakn3h8bq"]
+
+[ext_resource type="Texture2D" uid="uid://dbs4vwej0bptg" path="res://assets/entities/invis1.png" id="1_p57j1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwx7g"]
+
+[node name="Invis1" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gwx7g")
+
+[node name="Invis1Sprite" type="Sprite2D" parent="."]
+position = Vector2(50, 52)
+scale = Vector2(0.0764583, 0.0808333)
+texture = ExtResource("1_p57j1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
