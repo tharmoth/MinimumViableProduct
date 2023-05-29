@@ -37,19 +37,21 @@ func _process(delta):
 	if not targets.is_empty():
 		# handle the gun rotation
 		var target_pos: Vector2 = targets.front().global_position
-		var target_rot: float = global_position.direction_to(target_pos).angle()
-		gun.rotation = lerp_angle(gun.rotation, target_rot, rot_speed * delta)
+		var target_rot: float = fmod(global_position.direction_to(target_pos).angle(), 2*PI)
+		gun.rotation = fmod(lerp_angle(gun.rotation, target_rot, rot_speed * delta), 2*PI)
 		# will only fire if aiming near the target
-		if can_shoot and abs(gun.rotation - target_rot) < 0.3:
+		if can_shoot and abs(fmod(gun.rotation - target_rot, 2*PI)) < 0.3:
 			shoot()
 
 func _on_body_entered(body):
 	if not body in targets:
 		targets.append(body)
+		print("Body Entered")
 
 func _on_body_exited(body):
 	if body in targets:
 		targets.erase(body)
+		print("Body Exited")
 
 func _on_area_entered(area):
 	if not area in targets:
@@ -58,6 +60,7 @@ func _on_area_entered(area):
 func _on_area_exited(area):
 	if area in targets:
 		targets.erase(area)
+		print("Test area")
 
 func _on_fire_rate_timer_timeout():
 	can_shoot = true
