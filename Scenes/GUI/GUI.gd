@@ -163,6 +163,8 @@ func _on_grandma_is_dead():
 	cookies += .5
 
 func _on_start_pressed():
+	timeUntilNextSpawn = 0
+	spawning = false
 	waveIndex += 1
 
 func _spawnEnemy():
