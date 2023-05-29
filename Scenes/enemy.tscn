@@ -1,10 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://drllv3go1qteo"]
+[gd_scene load_steps=5 format=3 uid="uid://b3lsn0r0p8v06"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_lkg03"]
 [ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="2_dsh12"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwx7g"]
 radius = 50.04
+
+[sub_resource type="GDScript" id="GDScript_3moyl"]
+script/source = "extends Node2D
+
+var bar_red = preload(\"res://assets/entities/barHorizontal_red.png\")
+var bar_green = preload(\"res://assets/entities/barHorizontal_green.png\")
+var bar_yellow = preload(\"res://assets/entities/barHorizontal_yellow.png\")
+
+@onready var healthbar = $HealthBar
+
+func _ready():
+	hide()
+	if get_parent() and get_parent().get(\"max_health\"):
+		healthbar.max_value = get_parent().max_health
+		
+func _process(delta):
+	global_rotation = 0
+
+func update_healthbar(value):
+	show()
+	healthbar.value = value
+"
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_lkg03")
@@ -17,3 +39,14 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dsh12")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="HealthDisplay" type="Node2D" parent="."]
+script = SubResource("GDScript_3moyl")
+
+[node name="HealthBar" type="ProgressBar" parent="HealthDisplay"]
+offset_left = -48.0
+offset_top = -75.0
+offset_right = 152.0
+offset_bottom = -49.0
+scale = Vector2(0.5, 0.5)
+show_percentage = false

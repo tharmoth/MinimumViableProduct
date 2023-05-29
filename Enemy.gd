@@ -1,8 +1,11 @@
 # Written by Lizzy Jamie in collaboration with Scott and Will Kersh
 extends CharacterBody2D
+
+
 # grandma: This variable gets the sprite for the enemy so the path name will not need
 # to be called at every use
 @onready var grandma := $Sprite2D as Sprite2D
+@onready var health_display := $HealthDisplay as Node2D
 # percentToTarget: This float variable is the calculating factor for the percentage 
 # that should be multiplied by the delta for the grandma sprite to move from point a
 # to point b
@@ -79,9 +82,11 @@ func _physics_process(delta):
 func subtract_health(value: int) -> void:
 	# grandmaHealth will be decreased by the value (implying that the enemy has been hit)
 	grandmaHealth = max(0, grandmaHealth - value)
+	health_display.update_healthbar(grandmaHealth)
 	# This logic is built to signal if the enemy has died
 	if grandmaHealth == 0:
 		grandmaIsDead.emit()
 		grandma.hide()
 		queue_free()
-		
+
+

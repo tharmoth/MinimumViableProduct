@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyfv5rxo6ivoy"
-path="res://.godot/imported/Tileset.png-f6f91f8dff42777812741f4e1f1396f7.ctex"
+uid="uid://c1ikbbpu4l7tx"
+path="res://.godot/imported/barHorizontal_green.png-4b98a20e9e4ee5bd660372ac4aa49b67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tilesets/Tileset.png"
-dest_files=["res://.godot/imported/Tileset.png-f6f91f8dff42777812741f4e1f1396f7.ctex"]
+source_file="res://assets/entities/barHorizontal_green.png"
+dest_files=["res://.godot/imported/barHorizontal_green.png-4b98a20e9e4ee5bd660372ac4aa49b67.ctex"]
 
 [params]
 
