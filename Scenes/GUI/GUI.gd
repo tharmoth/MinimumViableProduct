@@ -7,12 +7,20 @@ extends Control
 @export var tilemap: TileMap
 
 @onready var timeBetweenSpawns = .25
+@onready var handgunPrice = 1
+@onready var riflePrice = 2.5
+@onready var bazookaPrice = 5
 
 var turretDistance = 64
 var waveIndex = 0
 var enemysToSpawn = 0
 var timeSinceSpawn = 0
-var cookies = 5
+var cookies = 5 :
+	get:
+		return cookies
+	set(value):
+		cookies = value
+		$Lives/VBoxContainer/CookiesCount.text = str(cookies)
 
 var selectedObject = null :
 	get:
@@ -37,10 +45,13 @@ func _on_gui_input(event):
 		var newTurret = null
 		if selectedObject == "Standard":
 			newTurret = Handgun.instantiate()
+			cookies -= handgunPrice
 		elif selectedObject == "Advanced":
 			newTurret = Rifle.instantiate()
+			cookies -= riflePrice
 		elif selectedObject == "Ultimate":
 			newTurret = Bazooka.instantiate()
+			cookies -= bazookaPrice
 			
 		if newTurret != null:
 			newTurret.position = event.position
@@ -48,11 +59,11 @@ func _on_gui_input(event):
 		
 func _is_valid_build_loc(position):
 	
-	if selectedObject == "Standard" && cookies < 1:
+	if selectedObject == "Standard" && cookies < handgunPrice:
 		return false
-	elif selectedObject == "Advanced" && cookies < 2.5:
+	elif selectedObject == "Advanced" && cookies < riflePrice:
 		return false
-	elif selectedObject == "Ultimate" && cookies < 5:
+	elif selectedObject == "Ultimate" && cookies < bazookaPrice:
 		return false
 	
 	# Make sure the tilemap is grass
@@ -100,9 +111,8 @@ func _on_grandma_reached_end():
 	$Lives/VBoxContainer/HealthBar.value -= 1
 	print("rip")
 	
-func _on_grandma_death():
-	cookies + .5
-	$Lives/VBoxContainer/CoinsCount.text = str(cookies)
+func _on_grandma_is_dead():
+	cookies += .5
 
 func _on_start_pressed():
 	waveIndex += 1
@@ -114,6 +124,7 @@ func _spawnEnemy():
 	tilemap.get_node("/root/Main/Map/Enemies").add_child(newEnemy)
 	selectedObject = "Start Wave"
 	newEnemy.grandmaReachedEnd.connect(_on_grandma_reached_end)
+	newEnemy.grandmaIsDead.connect(_on_grandma_is_dead)
 	
 func _on_build_pressed():
 	selectedObject = "Build"
