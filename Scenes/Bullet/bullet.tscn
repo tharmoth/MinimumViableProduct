@@ -32,6 +32,7 @@ scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_geyqj")
 
 [node name="ExplosionSprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-2.5, -22.5)
 scale = Vector2(3.20703, 2.93896)
 texture = ExtResource("3_56etc")

@@ -6,8 +6,8 @@
 [node name="Rifle" type="Node2D"]
 
 [node name="Gun" parent="." instance=ExtResource("1_a28uh")]
-fire_rate = 0.2
+fire_rate = 0.1
 rot_speed = 10.0
 gun_texture = ExtResource("4_jk2o5")
-projectile_spread = 0.3
+projectile_spread = 0.5
 projectile_damage = 5
