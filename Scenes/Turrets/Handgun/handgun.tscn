@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdi2wmrgwgt5k"]
+
+[ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turrets/gun.tscn" id="1_evsqi"]
+[ext_resource type="Texture2D" uid="uid://bxmoewa7vtpht" path="res://assets/entities/Turret2.png" id="2_2fwb4"]
+
+[node name="Handgun" type="Node2D"]
+
+[node name="Gun" parent="." instance=ExtResource("1_evsqi")]
+gun_texture = ExtResource("2_2fwb4")
+projectile_spread = 0.1
