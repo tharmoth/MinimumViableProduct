@@ -9,6 +9,8 @@ var can_shoot := true
 @export var projectile_spread: float = 0.2
 @export var projectile_speed: int = 1000
 @export var projectile_damage: int = 10
+@export var explosion_range: int = 0
+@export var explosion_damage: int = 10
 
 @onready var firerate_timer := $FireRateTimer as Timer
 @onready var muzzle := $TurretSprite2D/Muzzle as Marker2D
@@ -30,7 +32,7 @@ func _instance_projectile(_position: Vector2, target=null) -> void:
 	add_child(bullet)
 	bullet.start(_position,
 			gun.rotation + randf_range(-projectile_spread, projectile_spread),
-			projectile_speed, projectile_damage, target)
+			projectile_speed, projectile_damage, explosion_range, explosion_damage, target)
 
 func _process(delta):
 	# update draw
@@ -47,12 +49,10 @@ func _process(delta):
 func _on_body_entered(body):
 	if not body in targets:
 		targets.append(body)
-		print("Body Entered")
 
 func _on_body_exited(body):
 	if body in targets:
 		targets.erase(body)
-		print("Body Exited")
 
 func _on_area_entered(area):
 	if not area in targets:

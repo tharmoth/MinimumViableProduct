@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://5421jls8apmq"]
+[gd_scene load_steps=6 format=3 uid="uid://5421jls8apmq"]
 
 [ext_resource type="Script" path="res://Scenes/Bullet/bullet.gd" id="1_u7v5s"]
 [ext_resource type="Texture2D" uid="uid://bfhx0hy1hceuy" path="res://assets/entities/Bullet.png" id="2_xxrmt"]
+[ext_resource type="Texture2D" uid="uid://ccj05iswqj5ko" path="res://assets/entities/Explosion.png" id="3_56etc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kuni1"]
 height = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_geyqj"]
+radius = 115.0
 
 [node name="Bullet" type="Area2D"]
 scale = Vector2(0.4, 0.4)
@@ -20,6 +24,21 @@ texture = ExtResource("2_xxrmt")
 
 [node name="LifetimeTimer" type="Timer" parent="."]
 
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="ExplosionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_geyqj")
+
+[node name="ExplosionSprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.5, -22.5)
+scale = Vector2(3.20703, 2.93896)
+texture = ExtResource("3_56etc")
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
