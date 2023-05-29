@@ -6,9 +6,11 @@
 [node name="Bazooka" type="Node2D"]
 
 [node name="Gun" parent="." instance=ExtResource("1_epv5u")]
-fire_rate = 0.8
+fire_rate = 3.0
 rot_speed = 10.0
 gun_texture = ExtResource("2_xblde")
 projectile_spread = 0.0
 projectile_speed = 3000
-projectile_damage = 50
+projectile_damage = 30
+explosion_range = 50
+explosion_damage = 20
