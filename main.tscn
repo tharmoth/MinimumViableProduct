@@ -19,6 +19,7 @@ metadata/_edit_horizontal_guides_ = []
 [node name="GUI" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_em4da")]
 layout_mode = 1
 tilemap = NodePath("../Map")
+cookies = 20
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 321)

@@ -7,9 +7,20 @@ extends Control
 @export var tilemap: TileMap
 
 @export var timeBetweenSpawns = .25
-@export var handgunPrice = 1
-@export var riflePrice = 2.5
-@export var bazookaPrice = 5
+@export var handgunPrice = 1 :
+	set(value):
+		handgunPrice = value
+		$BuildOptions/HBoxContainer/Standard.text = "Handgun (" + str(handgunPrice) + ")"
+@export var riflePrice = 2.5  :
+	set(value):
+		riflePrice = value
+		$BuildOptions/HBoxContainer/Advanced.text = "Rifle (" + str(riflePrice) + ")"
+@export var bazookaPrice = 5 :
+	set(value):
+		bazookaPrice = value
+		$BuildOptions/HBoxContainer/Ultimate.text = "Bazooka (" + str(bazookaPrice) + ")"
+@export var speedIncreasePerRround = 1
+@export var cookieMulti = 1.2
 
 var turretDistance = 64
 
@@ -18,12 +29,15 @@ var timeSinceSpawn = 0
 var timeUntilNextSpawn = 0
 var spawning = false
 
+var waveSizes = []
+
 var waveIndex = 0 :
 	get:
 		return waveIndex
 	set(value):
 		waveIndex = value
 		enemysToSpawn += waveIndex
+		waveSizes.append(enemysToSpawn)
 		$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
 
 @export var cookies = 5 :
@@ -58,12 +72,15 @@ func _on_gui_input(event):
 		if selectedObject == "Standard":
 			newTurret = Handgun.instantiate()
 			cookies -= handgunPrice
+			handgunPrice += .5
 		elif selectedObject == "Advanced":
 			newTurret = Rifle.instantiate()
 			cookies -= riflePrice
+			riflePrice += .5
 		elif selectedObject == "Ultimate":
 			newTurret = Bazooka.instantiate()
 			cookies -= bazookaPrice
+			bazookaPrice += .5
 			
 		if newTurret != null:
 			newTurret.position = event.position
@@ -93,6 +110,9 @@ func _is_valid_build_loc(position):
 func _ready():
 	selectedObject = null
 	cookies = cookies
+	handgunPrice = handgunPrice
+	riflePrice = riflePrice
+	bazookaPrice = bazookaPrice
 	pass # Replace with function body.
 
 
@@ -133,6 +153,13 @@ func _on_grandma_reached_end():
 	
 func _on_grandma_is_dead():
 	print("gmaw outie")
+	
+	if waveSizes.size() > 0:
+		waveSizes[0] = waveSizes[0] - 1
+		if waveSizes[0] == 0:
+			waveSizes.remove_at(0)
+			cookies *= cookieMulti
+	
 	if (tilemap.get_node("/root/Main/Map/Enemies").get_child_count() < 2):
 		spawning = true
 		timeUntilNextSpawn = 10
@@ -144,7 +171,7 @@ func _on_start_pressed():
 func _spawnEnemy():
 	var newEnemy = Enemy.instantiate()
 	tilemap.get_node("/root/Main/Map/Enemies").add_child(newEnemy)
-	selectedObject = "Start Wave"
+	newEnemy.speed += waveIndex * speedIncreasePerRround
 	newEnemy.grandmaReachedEnd.connect(_on_grandma_reached_end)
 	newEnemy.grandmaIsDead.connect(_on_grandma_is_dead)
 	
