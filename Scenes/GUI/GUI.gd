@@ -12,6 +12,7 @@ var turretDistance = 64
 var waveIndex = 0
 var enemysToSpawn = 0
 var timeSinceSpawn = 0
+var cookies = 5
 
 var selectedObject = null :
 	get:
@@ -33,14 +34,12 @@ var selectedObject = null :
 
 func _on_gui_input(event):
 	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT && _is_valid_build_loc(event.position):
-		print("Build turret")
 		var newTurret = null
 		if selectedObject == "Standard":
 			newTurret = Handgun.instantiate()
 		elif selectedObject == "Advanced":
 			newTurret = Rifle.instantiate()
 		elif selectedObject == "Ultimate":
-			print("ultimate")
 			newTurret = Bazooka.instantiate()
 			
 		if newTurret != null:
@@ -48,6 +47,14 @@ func _on_gui_input(event):
 			tilemap.get_node("/root/Main/Map/Turrets").add_child(newTurret)
 		
 func _is_valid_build_loc(position):
+	
+	if selectedObject == "Standard" && cookies < 1:
+		return false
+	elif selectedObject == "Advanced" && cookies < 2.5:
+		return false
+	elif selectedObject == "Ultimate" && cookies < 5:
+		return false
+	
 	# Make sure the tilemap is grass
 	# I'm not sure why we need to scale here
 	if (tilemap.get_cell_atlas_coords(0, tilemap.local_to_map(position * 2)) != Vector2i(0, 0)):
@@ -92,11 +99,15 @@ func _input(event):
 func _on_grandma_reached_end():
 	$Lives/VBoxContainer/HealthBar.value -= 1
 	print("rip")
+	
+func _on_grandma_death():
+	cookies + .5
+	$Lives/VBoxContainer/CoinsCount.text = str(cookies)
 
 func _on_start_pressed():
 	waveIndex += 1
 	enemysToSpawn += waveIndex
-	print("Starting Wave " + str(waveIndex))
+	$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
 
 func _spawnEnemy():
 	var newEnemy = Enemy.instantiate()

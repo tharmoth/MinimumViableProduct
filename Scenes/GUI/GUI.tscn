@@ -115,13 +115,18 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Lives"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 150.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_bottom = 200.0
+grow_horizontal = 0
 
 [node name="Label" type="Label" parent="Lives/VBoxContainer"]
 layout_mode = 2
 text = "Lives"
+horizontal_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="Lives/VBoxContainer"]
 layout_mode = 2
@@ -129,7 +134,17 @@ size_flags_vertical = 3
 value = 100.0
 fill_mode = 2
 
-[node name="Control" type="Control" parent="."]
+[node name="Cookies" type="Label" parent="Lives/VBoxContainer"]
+layout_mode = 2
+text = "Cookies"
+
+[node name="CookiesCount" type="Label" parent="Lives/VBoxContainer"]
+layout_mode = 2
+text = "5
+"
+horizontal_alignment = 1
+
+[node name="TopInfo" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -139,20 +154,14 @@ offset_right = 130.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInfo"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control/HBoxContainer"]
+[node name="LevelLabel" type="Label" parent="TopInfo/HBoxContainer"]
 layout_mode = 2
 text = "Progress"
-
-[node name="ProgressBar" type="ProgressBar" parent="Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 50.0
 
 [node name="ValidCursor" type="Sprite2D" parent="."]
 visible = false
