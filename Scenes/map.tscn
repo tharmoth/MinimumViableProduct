@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="1_5jht1"]
 [ext_resource type="Script" path="res://Enemy.gd" id="2_oidu5"]
-[ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="3_bisfh"]
-[ext_resource type="Texture2D" uid="uid://of1kou4anid3" path="res://assets/entities/invis2.png" id="4_2atnb"]
+[ext_resource type="Texture2D" uid="uid://bllvnria0j3jf" path="res://assets/entities/enemy.jpg" id="3_bisfh"]
+[ext_resource type="Texture2D" uid="uid://bjjjygn14t33a" path="res://assets/entities/invis2.png" id="4_2atnb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -111,7 +111,7 @@ script = ExtResource("2_oidu5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CircleShape2D_gwx7g")
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+[node name="EnemySprite" type="Sprite2D" parent="Enemy"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_bisfh")
 
