@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://18et2tcbrm1o"]
+[gd_scene load_steps=4 format=3 uid="uid://18et2tcbrm1o"]
 
 [ext_resource type="Script" path="res://Scenes/GUI/GUI.gd" id="1_qmn8n"]
+[ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turret/turret.tscn" id="2_664ru"]
+[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="3_i3r86"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -11,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qmn8n")
+Turret = ExtResource("2_664ru")
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 1
@@ -122,6 +125,7 @@ value = 100.0
 fill_mode = 2
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -145,6 +149,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 50.0
+
+[node name="ValidCursor" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_i3r86")
+region_enabled = true
+region_rect = Rect2(0, 64, 64, 64)
+
+[node name="InvalidCursor" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_i3r86")
+region_enabled = true
+region_rect = Rect2(64, 64, 64, 64)
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="Buttons/HBoxContainer/Start" to="." method="_on_start_pressed"]

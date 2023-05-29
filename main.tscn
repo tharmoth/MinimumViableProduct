@@ -1,11 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbau7op813630"]
+[gd_scene load_steps=8 format=3 uid="uid://cbau7op813630"]
 
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="1_dl7k0"]
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
 [ext_resource type="Texture2D" uid="uid://bjh3yfsxgaxoy" path="res://assets/entities/enemy.jpg" id="3_2x4pb"]
-[ext_resource type="Script" path="res://Scenes/TurretSlot/TurretSlot.gd" id="4_wcwik"]
-[ext_resource type="Texture2D" uid="uid://ccywbpqemfqww" path="res://assets/entities/TurretSlot.png" id="5_fhxdh"]
-[ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turret/turret.tscn" id="6_5gp2p"]
 [ext_resource type="PackedScene" uid="uid://18et2tcbrm1o" path="res://Scenes/GUI/GUI.tscn" id="6_em4da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
@@ -94,9 +91,6 @@ sources/0 = SubResource("TileSetAtlasSource_1o4n5")
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwx7g"]
 radius = 50.04
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_okuh8"]
-size = Vector2(32, 32)
-
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -135,30 +129,8 @@ texture = ExtResource("3_2x4pb")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Map/Enemy"]
 
-[node name="TurretSlot" type="Area2D" parent="Map"]
-position = Vector2(50, 50)
-script = ExtResource("4_wcwik")
+[node name="Turrets" type="Node" parent="Map"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Map/TurretSlot"]
-texture = ExtResource("5_fhxdh")
-region_filter_clip_enabled = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TurretSlot"]
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_okuh8")
-
-[node name="Turret" parent="Map" instance=ExtResource("6_5gp2p")]
-position = Vector2(594, 288)
-scale = Vector2(2, 2)
-collision_layer = 0
-
-[node name="Turret2" parent="Map" instance=ExtResource("6_5gp2p")]
-position = Vector2(1034, 278)
-scale = Vector2(2, 2)
-collision_layer = 0
-
-[node name="GUI" parent="." instance=ExtResource("6_em4da")]
+[node name="GUI" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_em4da")]
 layout_mode = 1
-
-[connection signal="input_event" from="Map/TurretSlot" to="Map/TurretSlot" method="_on_input_event"]
-[connection signal="mouse_entered" from="Map/TurretSlot" to="Map/TurretSlot" method="_on_mouse_entered"]
+tilemap = NodePath("../Map")

@@ -1,10 +1,14 @@
 extends Control
 
+@export var Turret: PackedScene
+@export var tilemap: TileMap
+
+var turretDistance = 64
+
 var selectedObject = null :
 	get:
 		return selectedObject
 	set(value):
-		print(value)
 		selectedObject = value
 		if value != null:
 			$InfoPanel.visible = true
@@ -21,12 +25,26 @@ var selectedObject = null :
 
 func _on_gui_input(event):
 	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		selectedObject = null
+		if selectedObject == "Standard" && _is_valid_build_loc(event.position):
+			var newTurret = Turret.instantiate()
+			print("building turret")
+			newTurret.position = event.position
+			tilemap.get_node("/root/Main/Map/Turrets").add_child(newTurret)
+		
+func _is_valid_build_loc(position):
+	# Make sure the tilemap is grass
+	# I'm not sure why we need to scale here
+	if (tilemap.get_cell_atlas_coords(0, tilemap.local_to_map(position * 2)) != Vector2i(0, 0)):
+		return false
+		
+	for turret in tilemap.get_node("/root/Main/Map/Turrets").get_children():
+		if turret.position.distance_to(position) < turretDistance:
+			return false
+
+	return true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("control ready")
-	
 	selectedObject = null
 	pass # Replace with function body.
 
@@ -35,6 +53,21 @@ func _ready():
 func _process(delta):
 	pass
 
+func _input(event):
+	if event is InputEventMouseMotion and selectedObject == "Standard":
+		if _is_valid_build_loc(event.position):
+			$InvalidCursor.visible = false;
+			
+			$ValidCursor.visible = true;
+			$ValidCursor.position = event.position
+		else:
+			$ValidCursor.visible = false;
+			
+			$InvalidCursor.visible = true;
+			$InvalidCursor.position = event.position
+	else:
+		$ValidCursor.visible = false;
+		$ValidCursor.visible = false;
 
 func _on_start_pressed():
 	selectedObject = "Start Wave"
