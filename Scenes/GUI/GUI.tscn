@@ -20,7 +20,6 @@ Enemy = ExtResource("2_xj1s7")
 Handgun = ExtResource("3_xa8dw")
 Rifle = ExtResource("4_mxwnc")
 Bazooka = ExtResource("5_mrevl")
-cookieMulti = 1.1
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 1

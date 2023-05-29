@@ -15,12 +15,12 @@ extends Control
 	set(value):
 		riflePrice = value
 		$BuildOptions/HBoxContainer/Advanced.text = "Rifle (" + str(riflePrice) + ")"
-@export var bazookaPrice = 5 :
+@export var bazookaPrice = 10 :
 	set(value):
 		bazookaPrice = value
 		$BuildOptions/HBoxContainer/Ultimate.text = "Bazooka (" + str(bazookaPrice) + ")"
-@export var speedIncreasePerRround = 1
-@export var cookieMulti = 1.2
+@export var speedIncreasePerRround = 5
+@export var cookieMulti = 1.05
 
 var turretDistance = 64
 
@@ -40,13 +40,13 @@ var waveIndex = 0 :
 		waveSizes.append(enemysToSpawn)
 		$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
 
-@export var cookies = 5 :
+@export var cookies = 15 :
 	get:
 		return cookies
 	set(value):
 		cookies = value
 		if cookies != null:
-			$Lives/VBoxContainer/CookiesCount.text = str(cookies)
+			$Lives/VBoxContainer/CookiesCount.text = "%.2f" % (cookies)
 
 var selectedObject = null :
 	get:
@@ -149,11 +149,8 @@ func _input(event):
 
 func _on_grandma_reached_end():
 	$Lives/VBoxContainer/HealthBar.value -= 1
-	print("rip")
 	
 func _on_grandma_is_dead():
-	print("gmaw outie")
-	
 	if waveSizes.size() > 0:
 		waveSizes[0] = waveSizes[0] - 1
 		if waveSizes[0] == 0:
