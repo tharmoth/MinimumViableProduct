@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://cbau7op813630"]
 
-[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/tilesets/Tileset.png" id="1_dl7k0"]
+[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="1_dl7k0"]
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
-[ext_resource type="Texture2D" uid="uid://bllvnria0j3jf" path="res://assets/entities/enemy.jpg" id="3_2x4pb"]
+[ext_resource type="Texture2D" uid="uid://bjh3yfsxgaxoy" path="res://assets/entities/enemy.jpg" id="3_2x4pb"]
 [ext_resource type="Script" path="res://Scenes/TurretSlot/TurretSlot.gd" id="4_wcwik"]
 [ext_resource type="Texture2D" uid="uid://ccywbpqemfqww" path="res://assets/entities/TurretSlot.png" id="5_fhxdh"]
 [ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turret/turret.tscn" id="6_5gp2p"]
-[ext_resource type="PackedScene" uid="uid://6cu2lxfbeq5f" path="res://Scenes/GUI/GUI.tscn" id="6_em4da"]
+[ext_resource type="PackedScene" uid="uid://18et2tcbrm1o" path="res://Scenes/GUI/GUI.tscn" id="6_em4da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -162,4 +162,3 @@ layout_mode = 1
 
 [connection signal="input_event" from="Map/TurretSlot" to="Map/TurretSlot" method="_on_input_event"]
 [connection signal="mouse_entered" from="Map/TurretSlot" to="Map/TurretSlot" method="_on_mouse_entered"]
-[connection signal="gui_input" from="GUI" to="Map/TurretSlot" method="_on_gui_gui_input"]
