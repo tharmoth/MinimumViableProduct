@@ -6,21 +6,33 @@ extends Control
 @export var Bazooka: PackedScene
 @export var tilemap: TileMap
 
-@onready var timeBetweenSpawns = .25
-@onready var handgunPrice = 1
-@onready var riflePrice = 2.5
-@onready var bazookaPrice = 5
+@export var timeBetweenSpawns = .25
+@export var handgunPrice = 1
+@export var riflePrice = 2.5
+@export var bazookaPrice = 5
 
 var turretDistance = 64
-var waveIndex = 0
+
 var enemysToSpawn = 0
 var timeSinceSpawn = 0
-var cookies = 5 :
+var timeUntilNextSpawn = 0
+var spawning = false
+
+var waveIndex = 0 :
+	get:
+		return waveIndex
+	set(value):
+		waveIndex = value
+		enemysToSpawn += waveIndex
+		$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
+
+var cookies = 20 :
 	get:
 		return cookies
 	set(value):
 		cookies = value
-		$Lives/VBoxContainer/CookiesCount.text = str(cookies)
+		if cookies != null:
+			$Lives/VBoxContainer/CookiesCount.text = str(cookies)
 
 var selectedObject = null :
 	get:
@@ -86,10 +98,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timeSinceSpawn += delta
+	timeUntilNextSpawn -= delta
 	if (enemysToSpawn > 0 && timeSinceSpawn > timeBetweenSpawns):
 		_spawnEnemy()
 		enemysToSpawn -= 1
 		timeSinceSpawn = 0
+	if (spawning && timeUntilNextSpawn < 0 && tilemap.get_node("/root/Main/Map/Enemies").get_child_count() == 0):
+		waveIndex += 1
+		spawning = false
+		$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
+	if(timeUntilNextSpawn > 0): 
+		$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex) + " Time until next wave: " + str(int(timeUntilNextSpawn))
 
 func _input(event):
 	if event is InputEventMouseMotion and (selectedObject == "Standard" or selectedObject == "Advanced" or selectedObject == "Ultimate"):
@@ -112,12 +131,14 @@ func _on_grandma_reached_end():
 	print("rip")
 	
 func _on_grandma_is_dead():
+	print("gmaw outie")
+	if (tilemap.get_node("/root/Main/Map/Enemies").get_child_count() < 2):
+		spawning = true
+		timeUntilNextSpawn = 10
 	cookies += .5
 
 func _on_start_pressed():
 	waveIndex += 1
-	enemysToSpawn += waveIndex
-	$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
 
 func _spawnEnemy():
 	var newEnemy = Enemy.instantiate()

@@ -90,16 +90,16 @@ offset_bottom = 40.0
 
 [node name="Standard" type="Button" parent="BuildOptions/HBoxContainer"]
 layout_mode = 2
-text = "Standard
+text = "Handgun (1)
 "
 
 [node name="Advanced" type="Button" parent="BuildOptions/HBoxContainer"]
 layout_mode = 2
-text = "Advanced"
+text = "Rifle (2.5)"
 
 [node name="Ultimate" type="Button" parent="BuildOptions/HBoxContainer"]
 layout_mode = 2
-text = "Ultimate"
+text = "Bazooka (5)"
 
 [node name="Back" type="Button" parent="BuildOptions/HBoxContainer"]
 layout_mode = 2
