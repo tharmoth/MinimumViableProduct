@@ -3,8 +3,9 @@ extends Area2D
 var targets: Array[Node2D]
 var can_shoot := true
 
-@export var fire_rate: float = 0.1
+@export var fire_rate: float = 0.5
 @export var rot_speed: float = 8.0
+@export var gun_texture: CompressedTexture2D
 @export var projectile_type: PackedScene
 @export var projectile_spread: float = 0.2
 @export var projectile_speed: int = 1000
@@ -16,7 +17,7 @@ var can_shoot := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	gun.texture = gun_texture
 
 # Gets called by its parents, so that we have more control over when to shoot
 func shoot() -> void:
@@ -42,8 +43,6 @@ func _process(delta):
 		var target_rot: float = global_position.direction_to(target_pos).angle()
 		gun.rotation = lerp_angle(gun.rotation, target_rot, rot_speed * delta)
 		if can_shoot and abs(gun.rotation - target_rot) < 0.3:
-			print("Gun Rotation:", gun.rotation)
-			print("Target Rotation:", target_rot)
 			shoot()
 
 func _on_body_entered(body):

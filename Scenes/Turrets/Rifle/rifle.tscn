@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcek2ic3fiaai"]
+
+[ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turrets/gun.tscn" id="1_a28uh"]
+
+[node name="Rifle" type="Node2D"]
+
+[node name="Gun" parent="." instance=ExtResource("1_a28uh")]
+fire_rate = 0.3
