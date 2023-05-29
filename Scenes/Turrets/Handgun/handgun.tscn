@@ -8,3 +8,4 @@
 [node name="Gun" parent="." instance=ExtResource("1_evsqi")]
 rot_speed = 12.0
 gun_texture = ExtResource("2_2fwb4")
+projectile_damage = 8
