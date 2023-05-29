@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://du3mj5ge04uh7"]
+[gd_scene load_steps=7 format=3 uid="uid://du3mj5ge04uh7"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
 [ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="2_mawca"]
+[ext_resource type="PackedScene" uid="uid://of8yiaq12u1b" path="res://NavigationPoints.tscn" id="3_mhbfd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 
@@ -28,7 +29,12 @@ script = ExtResource("1_fpdfu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Enemy"]
 shape = SubResource("CircleShape2D_gwx7g")
 
-[node name="Sprite2D" type="Sprite2D" parent="Map/Enemy"]
+[node name="EnemySprite" type="Sprite2D" parent="Map/Enemy"]
+z_index = 1
+position = Vector2(53, 56)
+scale = Vector2(0.2425, 0.26)
 texture = ExtResource("2_mawca")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Map/Enemy"]
+
+[node name="NavigationPoints" parent="." instance=ExtResource("3_mhbfd")]
