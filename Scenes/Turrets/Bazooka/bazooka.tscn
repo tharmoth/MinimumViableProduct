@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://bv22gs6clnok3"]
+[gd_scene load_steps=3 format=3 uid="uid://bv22gs6clnok3"]
 
-[node name="bazooka" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turrets/gun.tscn" id="1_epv5u"]
+[ext_resource type="Texture2D" uid="uid://ds5dpoxynidlx" path="res://assets/entities/Turret3.png" id="2_xblde"]
+
+[node name="Bazooka" type="Node2D"]
+
+[node name="Gun" parent="." instance=ExtResource("1_epv5u")]
+fire_rate = 0.8
+rot_speed = 10.0
+gun_texture = ExtResource("2_xblde")
+projectile_spread = 0.0
+projectile_speed = 3000
+projectile_damage = 50
