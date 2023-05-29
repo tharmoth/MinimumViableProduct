@@ -6,7 +6,21 @@ extends Control
 @export var Bazooka: PackedScene
 @export var tilemap: TileMap
 
+@onready var timeBetweenSpawns = .25
+@onready var handgunPrice = 1
+@onready var riflePrice = 2.5
+@onready var bazookaPrice = 5
+
 var turretDistance = 64
+var waveIndex = 0
+var enemysToSpawn = 0
+var timeSinceSpawn = 0
+var cookies = 5 :
+	get:
+		return cookies
+	set(value):
+		cookies = value
+		$Lives/VBoxContainer/CookiesCount.text = str(cookies)
 
 var selectedObject = null :
 	get:
@@ -28,21 +42,30 @@ var selectedObject = null :
 
 func _on_gui_input(event):
 	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT && _is_valid_build_loc(event.position):
-		print("Build turret")
 		var newTurret = null
 		if selectedObject == "Standard":
 			newTurret = Handgun.instantiate()
+			cookies -= handgunPrice
 		elif selectedObject == "Advanced":
 			newTurret = Rifle.instantiate()
+			cookies -= riflePrice
 		elif selectedObject == "Ultimate":
-			print("ultimate")
 			newTurret = Bazooka.instantiate()
+			cookies -= bazookaPrice
 			
 		if newTurret != null:
 			newTurret.position = event.position
 			tilemap.get_node("/root/Main/Map/Turrets").add_child(newTurret)
 		
 func _is_valid_build_loc(position):
+	
+	if selectedObject == "Standard" && cookies < handgunPrice:
+		return false
+	elif selectedObject == "Advanced" && cookies < riflePrice:
+		return false
+	elif selectedObject == "Ultimate" && cookies < bazookaPrice:
+		return false
+	
 	# Make sure the tilemap is grass
 	# I'm not sure why we need to scale here
 	if (tilemap.get_cell_atlas_coords(0, tilemap.local_to_map(position * 2)) != Vector2i(0, 0)):
@@ -62,7 +85,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	timeSinceSpawn += delta
+	if (enemysToSpawn > 0 && timeSinceSpawn > timeBetweenSpawns):
+		_spawnEnemy()
+		enemysToSpawn -= 1
+		timeSinceSpawn = 0
 
 func _input(event):
 	if event is InputEventMouseMotion and (selectedObject == "Standard" or selectedObject == "Advanced" or selectedObject == "Ultimate"):
@@ -80,11 +107,25 @@ func _input(event):
 		$ValidCursor.visible = false;
 		$ValidCursor.visible = false;
 
-func _on_start_pressed():
-	var newEnemy = Enemy.instantiate()
-	tilemap.get_node("/root/Main/Map").add_child(newEnemy)
-	selectedObject = "Start Wave"
+func _on_grandma_reached_end():
+	$Lives/VBoxContainer/HealthBar.value -= 1
+	print("rip")
+	
+func _on_grandma_is_dead():
+	cookies += .5
 
+func _on_start_pressed():
+	waveIndex += 1
+	enemysToSpawn += waveIndex
+	$TopInfo/HBoxContainer/LevelLabel.text = "On wave: " + str(waveIndex)
+
+func _spawnEnemy():
+	var newEnemy = Enemy.instantiate()
+	tilemap.get_node("/root/Main/Map/Enemies").add_child(newEnemy)
+	selectedObject = "Start Wave"
+	newEnemy.grandmaReachedEnd.connect(_on_grandma_reached_end)
+	newEnemy.grandmaIsDead.connect(_on_grandma_is_dead)
+	
 func _on_build_pressed():
 	selectedObject = "Build"
 

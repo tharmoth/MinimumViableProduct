@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://6cu2lxfbeq5f"]
+[gd_scene load_steps=7 format=3 uid="uid://18et2tcbrm1o"]
 
 [ext_resource type="Script" path="res://Scenes/GUI/GUI.gd" id="1_qmn8n"]
-[ext_resource type="PackedScene" uid="uid://drllv3go1qteo" path="res://Scenes/enemy.tscn" id="2_xj1s7"]
-[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/tilesets/Tileset.png" id="3_i3r86"]
+[ext_resource type="PackedScene" uid="uid://b3lsn0r0p8v06" path="res://Scenes/enemy.tscn" id="2_xj1s7"]
+[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="3_i3r86"]
 [ext_resource type="PackedScene" uid="uid://cdi2wmrgwgt5k" path="res://Scenes/Turrets/Handgun/handgun.tscn" id="3_xa8dw"]
 [ext_resource type="PackedScene" uid="uid://bcek2ic3fiaai" path="res://Scenes/Turrets/Rifle/rifle.tscn" id="4_mxwnc"]
 [ext_resource type="PackedScene" uid="uid://bv22gs6clnok3" path="res://Scenes/Turrets/Bazooka/bazooka.tscn" id="5_mrevl"]
@@ -106,7 +106,6 @@ layout_mode = 2
 text = "Back"
 
 [node name="Lives" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -116,13 +115,18 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Lives"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 150.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_bottom = 200.0
+grow_horizontal = 0
 
 [node name="Label" type="Label" parent="Lives/VBoxContainer"]
 layout_mode = 2
 text = "Lives"
+horizontal_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="Lives/VBoxContainer"]
 layout_mode = 2
@@ -130,8 +134,17 @@ size_flags_vertical = 3
 value = 100.0
 fill_mode = 2
 
-[node name="Control" type="Control" parent="."]
-visible = false
+[node name="Cookies" type="Label" parent="Lives/VBoxContainer"]
+layout_mode = 2
+text = "Cookies"
+
+[node name="CookiesCount" type="Label" parent="Lives/VBoxContainer"]
+layout_mode = 2
+text = "5
+"
+horizontal_alignment = 1
+
+[node name="TopInfo" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -141,20 +154,14 @@ offset_right = 130.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopInfo"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control/HBoxContainer"]
+[node name="LevelLabel" type="Label" parent="TopInfo/HBoxContainer"]
 layout_mode = 2
 text = "Progress"
-
-[node name="ProgressBar" type="ProgressBar" parent="Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 50.0
 
 [node name="ValidCursor" type="Sprite2D" parent="."]
 visible = false

@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcek2ic3fiaai"]
+[gd_scene load_steps=3 format=3 uid="uid://bcek2ic3fiaai"]
 
 [ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turrets/gun.tscn" id="1_a28uh"]
+[ext_resource type="Texture2D" uid="uid://dxuvqcedl7pa4" path="res://assets/entities/Turret1.png" id="4_jk2o5"]
 
 [node name="Rifle" type="Node2D"]
 
 [node name="Gun" parent="." instance=ExtResource("1_a28uh")]
-fire_rate = 0.3
+fire_rate = 0.2
+rot_speed = 10.0
+gun_texture = ExtResource("4_jk2o5")
+projectile_spread = 0.3
+projectile_damage = 5
