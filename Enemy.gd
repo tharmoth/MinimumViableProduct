@@ -6,6 +6,7 @@ var pxlsAlreadyTraveled = 0
 var speed = 300.0
 var distance = 0
 var targetPoint = 0
+var health = 100
 
 func _physics_process(delta):
 	var invis = get_node("/root/Main/Map/NavigationPoints")
