@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dooeumjuuo0pn"]
+[gd_scene load_steps=5 format=3 uid="uid://dooeumjuuo0pn"]
 
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="1_5jht1"]
-[ext_resource type="Script" path="res://Enemy.gd" id="2_oidu5"]
-[ext_resource type="Texture2D" uid="uid://crx5raep7tqga" path="res://assets/entities/enemy.jpg" id="3_bisfh"]
-[ext_resource type="Texture2D" uid="uid://d366jooasd3jm" path="res://assets/entities/invis2.png" id="4_2atnb"]
+[ext_resource type="Texture2D" uid="uid://bjjjygn14t33a" path="res://assets/entities/invis2.png" id="4_2atnb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -88,9 +86,6 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_1o4n5")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gwx7g"]
-radius = 50.04
-
 [node name="Map" type="TileMap"]
 scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_y64e8")
@@ -104,18 +99,6 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
-
-[node name="Enemy" type="CharacterBody2D" parent="."]
-script = ExtResource("2_oidu5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("CircleShape2D_gwx7g")
-
-[node name="EnemySprite" type="Sprite2D" parent="Enemy"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_bisfh")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemy"]
 
 [node name="Turrets" type="Node" parent="."]
 
@@ -172,3 +155,5 @@ texture = ExtResource("4_2atnb")
 position = Vector2(1127, 589)
 scale = Vector2(0.198889, 0.174444)
 texture = ExtResource("4_2atnb")
+
+[node name="Enemies" type="Node2D" parent="."]

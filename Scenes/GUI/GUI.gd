@@ -6,7 +6,12 @@ extends Control
 @export var Bazooka: PackedScene
 @export var tilemap: TileMap
 
+@onready var timeBetweenSpawns = .25
+
 var turretDistance = 64
+var waveIndex = 0
+var enemysToSpawn = 0
+var timeSinceSpawn = 0
 
 var selectedObject = null :
 	get:
@@ -62,7 +67,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	timeSinceSpawn += delta
+	if (enemysToSpawn > 0 && timeSinceSpawn > timeBetweenSpawns):
+		_spawnEnemy()
+		enemysToSpawn -= 1
+		timeSinceSpawn = 0
 
 func _input(event):
 	if event is InputEventMouseMotion and (selectedObject == "Standard" or selectedObject == "Advanced" or selectedObject == "Ultimate"):
@@ -80,11 +89,21 @@ func _input(event):
 		$ValidCursor.visible = false;
 		$ValidCursor.visible = false;
 
-func _on_start_pressed():
-	var newEnemy = Enemy.instantiate()
-	tilemap.get_node("/root/Main/Map").add_child(newEnemy)
-	selectedObject = "Start Wave"
+func _on_grandma_reached_end():
+	$Lives/VBoxContainer/HealthBar.value -= 1
+	print("rip")
 
+func _on_start_pressed():
+	waveIndex += 1
+	enemysToSpawn += waveIndex
+	print("Starting Wave " + str(waveIndex))
+
+func _spawnEnemy():
+	var newEnemy = Enemy.instantiate()
+	tilemap.get_node("/root/Main/Map/Enemies").add_child(newEnemy)
+	selectedObject = "Start Wave"
+	newEnemy.grandmaReachedEnd.connect(_on_grandma_reached_end)
+	
 func _on_build_pressed():
 	selectedObject = "Build"
 

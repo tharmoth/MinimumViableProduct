@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://6cu2lxfbeq5f"]
+[gd_scene load_steps=7 format=3 uid="uid://18et2tcbrm1o"]
 
 [ext_resource type="Script" path="res://Scenes/GUI/GUI.gd" id="1_qmn8n"]
-[ext_resource type="PackedScene" uid="uid://drllv3go1qteo" path="res://Scenes/enemy.tscn" id="2_xj1s7"]
-[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/tilesets/Tileset.png" id="3_i3r86"]
+[ext_resource type="PackedScene" uid="uid://b3lsn0r0p8v06" path="res://Scenes/enemy.tscn" id="2_xj1s7"]
+[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="3_i3r86"]
 [ext_resource type="PackedScene" uid="uid://cdi2wmrgwgt5k" path="res://Scenes/Turrets/Handgun/handgun.tscn" id="3_xa8dw"]
 [ext_resource type="PackedScene" uid="uid://bcek2ic3fiaai" path="res://Scenes/Turrets/Rifle/rifle.tscn" id="4_mxwnc"]
 [ext_resource type="PackedScene" uid="uid://bv22gs6clnok3" path="res://Scenes/Turrets/Bazooka/bazooka.tscn" id="5_mrevl"]
@@ -106,7 +106,6 @@ layout_mode = 2
 text = "Back"
 
 [node name="Lives" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -131,7 +130,6 @@ value = 100.0
 fill_mode = 2
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
