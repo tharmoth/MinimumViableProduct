@@ -1,7 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://dooeumjuuo0pn"]
 
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="1_5jht1"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://d366jooasd3jm" path="res://assets/entities/invis2.png" id="4_2atnb"]
+=======
+[ext_resource type="Texture2D" uid="uid://bjjjygn14t33a" path="res://assets/entities/invis2.png" id="4_2atnb"]
+>>>>>>> cbbcef7c31009fdc2145e0edafdd118270c89acb
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -155,3 +159,5 @@ texture = ExtResource("4_2atnb")
 position = Vector2(1127, 589)
 scale = Vector2(0.198889, 0.174444)
 texture = ExtResource("4_2atnb")
+
+[node name="Enemies" type="Node2D" parent="."]
