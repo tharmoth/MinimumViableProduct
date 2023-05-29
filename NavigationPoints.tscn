@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://of8yiaq12u1b"]
+
+[ext_resource type="Texture2D" uid="uid://of1kou4anid3" path="res://assets/entities/invis2.png" id="2_2mdnc"]
+
+[node name="NavigationPoints" type="Node2D"]
+
+[node name="NavPoint1" type="Sprite2D" parent="."]
+position = Vector2(61, 56.0001)
+scale = Vector2(0.344444, 0.313333)
+texture = ExtResource("2_2mdnc")
+
+[node name="NavPoint2" type="Sprite2D" parent="."]
+position = Vector2(1090, 66.0001)
+scale = Vector2(0.344444, 0.313333)
+texture = ExtResource("2_2mdnc")
+
+[node name="NavPoint3" type="Sprite2D" parent="."]
+position = Vector2(1090, 264)
+scale = Vector2(0.344444, 0.313333)
+texture = ExtResource("2_2mdnc")
+
+[node name="NavPoint4" type="Sprite2D" parent="."]
+position = Vector2(51, 369)
+scale = Vector2(0.344444, 0.313333)
+texture = ExtResource("2_2mdnc")
+
+[node name="NavPoint5" type="Sprite2D" parent="."]
+position = Vector2(51, 523)
+scale = Vector2(0.344444, 0.313333)
+texture = ExtResource("2_2mdnc")
+
+[node name="NavPoint6" type="Sprite2D" parent="."]
+position = Vector2(1090, 577)
+scale = Vector2(0.344444, 0.313333)
+texture = ExtResource("2_2mdnc")

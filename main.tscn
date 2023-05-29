@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cbau7op813630"]
 
-[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/tilesets/Tileset.png" id="1_dl7k0"]
+[ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/Tilesets/Tileset.png" id="1_dl7k0"]
 [ext_resource type="Script" path="res://Enemy.gd" id="1_fpdfu"]
-[ext_resource type="Texture2D" uid="uid://bllvnria0j3jf" path="res://assets/entities/enemy.jpg" id="3_2x4pb"]
-[ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turret/turret.tscn" id="6_5gp2p"]
-[ext_resource type="PackedScene" uid="uid://6cu2lxfbeq5f" path="res://Scenes/GUI/GUI.tscn" id="6_em4da"]
+[ext_resource type="Texture2D" uid="uid://bjh3yfsxgaxoy" path="res://assets/entities/enemy.jpg" id="3_2x4pb"]
+[ext_resource type="PackedScene" path="res://NavigationPoints.tscn" id="4_ujhvc"]
+[ext_resource type="PackedScene" uid="uid://18et2tcbrm1o" path="res://Scenes/GUI/GUI.tscn" id="6_em4da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1o4n5"]
 resource_name = "Grass"
@@ -134,5 +134,7 @@ texture = ExtResource("3_2x4pb")
 
 [node name="GUI" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_em4da")]
 layout_mode = 1
-Turret = ExtResource("6_5gp2p")
 tilemap = NodePath("../Map")
+
+[node name="NavigationPoints" parent="." instance=ExtResource("4_ujhvc")]
+scale = Vector2(0.5, 0.5)
