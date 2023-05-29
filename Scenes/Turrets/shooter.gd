@@ -6,7 +6,6 @@ var can_shoot := true
 @export var fire_rate: float = 0.5
 @export var rot_speed: float = 8.0
 @export var gun_texture: CompressedTexture2D
-@export var projectile_type: PackedScene
 @export var projectile_spread: float = 0.2
 @export var projectile_speed: int = 1000
 @export var projectile_damage: int = 10
@@ -19,7 +18,6 @@ var can_shoot := true
 func _ready():
 	gun.texture = gun_texture
 
-# Gets called by its parents, so that we have more control over when to shoot
 func shoot() -> void:
 	can_shoot = false
 	_instance_projectile(muzzle.global_position)
@@ -33,7 +31,6 @@ func _instance_projectile(_position: Vector2, target=null) -> void:
 			gun.rotation + randf_range(-projectile_spread, projectile_spread),
 			projectile_speed, projectile_damage, target)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# update draw
 	queue_redraw()
@@ -42,6 +39,7 @@ func _process(delta):
 		var target_pos: Vector2 = targets.front().global_position
 		var target_rot: float = global_position.direction_to(target_pos).angle()
 		gun.rotation = lerp_angle(gun.rotation, target_rot, rot_speed * delta)
+		# will only fire if aiming near the target
 		if can_shoot and abs(gun.rotation - target_rot) < 0.3:
 			shoot()
 

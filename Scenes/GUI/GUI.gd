@@ -1,6 +1,9 @@
 extends Control
 
-@export var Turret: PackedScene
+@export var Enemy: PackedScene
+@export var Handgun: PackedScene
+@export var Rifle: PackedScene
+@export var Bazooka: PackedScene
 @export var tilemap: TileMap
 
 var turretDistance = 64
@@ -24,10 +27,18 @@ var selectedObject = null :
 			$InfoPanel.visible = false
 
 func _on_gui_input(event):
-	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		if selectedObject == "Standard" && _is_valid_build_loc(event.position):
-			var newTurret = Turret.instantiate()
-			print("building turret")
+	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT && _is_valid_build_loc(event.position):
+		print("Build turret")
+		var newTurret = null
+		if selectedObject == "Standard":
+			newTurret = Handgun.instantiate()
+		elif selectedObject == "Advanced":
+			newTurret = Rifle.instantiate()
+		elif selectedObject == "Ultimate":
+			print("ultimate")
+			newTurret = Bazooka.instantiate()
+			
+		if newTurret != null:
 			newTurret.position = event.position
 			tilemap.get_node("/root/Main/Map/Turrets").add_child(newTurret)
 		
@@ -54,7 +65,7 @@ func _process(delta):
 	pass
 
 func _input(event):
-	if event is InputEventMouseMotion and selectedObject == "Standard":
+	if event is InputEventMouseMotion and (selectedObject == "Standard" or selectedObject == "Advanced" or selectedObject == "Ultimate"):
 		if _is_valid_build_loc(event.position):
 			$InvalidCursor.visible = false;
 			
@@ -70,6 +81,8 @@ func _input(event):
 		$ValidCursor.visible = false;
 
 func _on_start_pressed():
+	var newEnemy = Enemy.instantiate()
+	tilemap.get_node("/root/Main/Map").add_child(newEnemy)
 	selectedObject = "Start Wave"
 
 func _on_build_pressed():

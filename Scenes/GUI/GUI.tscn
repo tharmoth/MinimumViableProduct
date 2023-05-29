@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://6cu2lxfbeq5f"]
+[gd_scene load_steps=7 format=3 uid="uid://6cu2lxfbeq5f"]
 
 [ext_resource type="Script" path="res://Scenes/GUI/GUI.gd" id="1_qmn8n"]
-[ext_resource type="PackedScene" uid="uid://bv8hl5ac3j8ha" path="res://Scenes/Turrets/gun.tscn" id="2_664ru"]
+[ext_resource type="PackedScene" uid="uid://drllv3go1qteo" path="res://Scenes/enemy.tscn" id="2_xj1s7"]
 [ext_resource type="Texture2D" uid="uid://cyfv5rxo6ivoy" path="res://assets/tilesets/Tileset.png" id="3_i3r86"]
+[ext_resource type="PackedScene" uid="uid://cdi2wmrgwgt5k" path="res://Scenes/Turrets/Handgun/handgun.tscn" id="3_xa8dw"]
+[ext_resource type="PackedScene" uid="uid://bcek2ic3fiaai" path="res://Scenes/Turrets/Rifle/rifle.tscn" id="4_mxwnc"]
+[ext_resource type="PackedScene" uid="uid://bv22gs6clnok3" path="res://Scenes/Turrets/Bazooka/bazooka.tscn" id="5_mrevl"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -13,7 +16,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qmn8n")
-Turret = ExtResource("2_664ru")
+Enemy = ExtResource("2_xj1s7")
+Handgun = ExtResource("3_xa8dw")
+Rifle = ExtResource("4_mxwnc")
+Bazooka = ExtResource("5_mrevl")
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 1
