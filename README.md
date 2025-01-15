@@ -1,32 +1,18 @@
 # MinimumViableProduct - Gamejam 2023
-tharmoth = Scott Kersh
+## Concept
+24 Hour Gamejam to get familiar with Godot
 
-AnonymousFood = Will Kersh
+Shoot the grandmas and steal their cookies! You start off by having only a few cookies but greed and hunger make you crave more!
+Buy your weapons and kill the grandmas before they reach the end of the maze!
 
-lizzyLoki = Lizzy Jamie
+Try the game [here](https://indigosingularity.itch.io/minimumviableproduct)!
 
-## Assets
-Bullet.png
+![image](https://github.com/user-attachments/assets/96f6390d-df47-4578-a24b-55e37d8ecfa6)
 
-enemy.jpg
-
-invis1.png
-
-invis2.png
-
-Turret1.png
-
-Turret2.png
-
-Turret3.png
-
-TurretBackground.png
-
-TurretSlot.png
+## Credits
+[Tharmoth](https://github.com/tharmoth)
+[AnonymousFood](https://github.com/AnonymousFood)
+[LizzyLoki](https://github.com/lizzyLoki)
 
 ## Languages Used
 GDScript
-
-## Concept
-Shoot the grandmas and steal their cookies! You start off by having only a few cookies but greed and hunger make you crave more!
-Buy your weapons and kill the grandmas before they reach the end of the maze!
